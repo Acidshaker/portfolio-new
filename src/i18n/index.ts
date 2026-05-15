@@ -12,7 +12,7 @@ import projectsEs from "./locales/es/projects.json";
 import projectsEn from "./locales/en/projects.json";
 import contactEs from "./locales/es/contact.json";
 import contactEn from "./locales/en/contact.json";
-import notfoundEs from "./locales/es/notFound.json";
+import notfoundEs from "./locales/es/notfound.json";
 import notfoundEn from "./locales/en/notfound.json";
 
 i18n
