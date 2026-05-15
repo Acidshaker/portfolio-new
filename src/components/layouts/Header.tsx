@@ -155,6 +155,12 @@ export default function Header() {
             width: 260,
             px: 2,
             py: 3,
+            // ✅ Fuerza fondo sólido según el modo — sin transparencia
+            backgroundColor: "background.default",
+            backgroundImage: "none",
+            backdropFilter: "none",
+            borderLeft: "1px solid",
+            borderColor: "divider",
           },
         }}
       >

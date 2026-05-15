@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://acidshaker.netlify.app/
+
+# Sitemaps
+Sitemap: https://acidshaker.netlify.app/sitemap.xml

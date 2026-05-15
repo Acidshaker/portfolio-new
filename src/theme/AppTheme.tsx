@@ -131,9 +131,10 @@ export default function AppTheme(props: AppThemeProps) {
         MuiDrawer: {
           styleOverrides: {
             paper: ({ theme }) => ({
-              background: theme.palette.background.paper,
-              borderRight: "none",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+              backgroundColor: "var(--template-palette-background-paper)",
+              backgroundImage: "none",
+              borderLeft: `1px solid var(--template-palette-divider)`,
+              boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
             }),
           },
         },
