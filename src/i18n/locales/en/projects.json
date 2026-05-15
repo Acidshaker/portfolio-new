@@ -1,0 +1,19 @@
+{
+  "page_title": "Projects",
+  "page_subtitle": "A selection of what I've built — from enterprise apps to personal projects.",
+  "filter_all": "All",
+  "filter_frontend": "Frontend",
+  "filter_backend": "Backend",
+  "filter_mobile": "Mobile",
+  "filter_fullstack": "Fullstack",
+  "badge_featured": "Featured",
+  "badge_private": "Private",
+  "badge_wip": "In progress",
+  "label_stack": "Stack",
+  "btn_github": "View code",
+  "btn_demo": "Live demo",
+  "btn_details": "View details",
+  "private_notice": "Private project — code under NDA",
+  "projects_count": "{{count}} projects",
+  "featured_label": "Featured project"
+}

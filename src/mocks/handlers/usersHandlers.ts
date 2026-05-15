@@ -1,0 +1,46 @@
+// mocks/handlers/usersHandler.ts
+import { http, HttpResponse } from "msw";
+import { allUsers } from "../data/users";
+
+export const usersHandler = http.get("api/users", ({ request }) => {
+  const url = new URL(request.url);
+  const page = Number(url.searchParams.get("page") || "1");
+  const limit = Number(url.searchParams.get("limit") || "10");
+  const offset = Number(url.searchParams.get("offset") || "0");
+  const search = url.searchParams.get("search")?.toLowerCase() || "";
+  const isActive = url.searchParams.get("isActive");
+
+  // console.log("Interceptando /api/users");
+
+
+  let filtered = allUsers;
+
+  // console.log(filtered)
+
+  if (search) {
+    filtered = filtered.filter(
+      (u) =>
+        u.firstName.toLowerCase().includes(search) ||
+        u.lastName.toLowerCase().includes(search) ||
+        u.email.toLowerCase().includes(search)
+    );
+  }
+
+  if (isActive !== null) {
+    filtered = filtered.filter((u) => u.isActive === (isActive === "true"));
+  }
+
+  const results = filtered.slice(offset, offset + limit);
+
+  return HttpResponse.json({
+    error: false,
+    status: 200,
+    message: "Usuarios obtenidos correctamente",
+    data: {
+      count: filtered.length,
+      totalPages: Math.ceil(filtered.length / limit),
+      page,
+      results,
+    },
+  });
+});

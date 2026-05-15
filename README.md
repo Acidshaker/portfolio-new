@@ -1,72 +1,74 @@
-# React + TypeScript + Vite
+# Portfolio - Guía de Ejecución
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Requisitos Previos
 
-Currently, two official plugins are available:
+- Node.js (v14 o superior)
+- npm o yarn
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Instalación
 
-## Expanding the ESLint configuration
+1. Clona el repositorio:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone <URL_DEL_REPOSITORIO>
+cd portfolio-new
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Instala las dependencias:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
-# inventory-dashboard
-# forrajeria
-# portfolio-new
+
+## Ejecución del Proyecto
+
+### Desarrollo
+
+Para ejecutar el proyecto en modo desarrollo:
+
+```bash
+npm start
+```
+
+La aplicación se abrirá automáticamente en `http://localhost:3000`
+
+### Construcción
+
+Para crear una versión optimizada para producción:
+
+```bash
+npm run build
+```
+
+### Testing
+
+Para ejecutar las pruebas:
+
+```bash
+npm test
+```
+
+## Estructura del Proyecto
+
+```
+portfolio-new/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── App.js
+│   └── index.js
+├── public/
+├── package.json
+└── README.md
+```
+
+## Tecnologías Utilizadas
+
+- React
+- CSS3
+- JavaScript ES6+
+
+## Notas Adicionales
+
+- Asegúrate de tener las variables de entorno configuradas si es necesario
+- Consulta la documentación oficial de React para más información

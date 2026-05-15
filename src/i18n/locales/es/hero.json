@@ -1,0 +1,13 @@
+{
+  "badge": "Disponible para nuevos proyectos",
+  "greeting": "Hola, soy",
+  "name": "Jorge Alberto Ortegón Bacelis",
+  "role": "Fullstack Developer",
+  "tagline": "Construyo productos digitales",
+  "taglineHighlight": "modernos, rápidos y escalables.",
+  "description": "Especializado en arquitecturas limpias y experiencias de usuario excepcionales. Del backend al frontend, del móvil a la nube.",
+  "cta_projects": "Ver proyectos",
+  "cta_cv": "Descargar CV",
+  "stack_label": "También trabajo con",
+  "years": "años"
+}
