@@ -243,8 +243,8 @@ export default function HeroSection() {
                 component="a"
                 href={
                   i18n.language === "en"
-                    ? "/src/assets/docs/CV-Jorge-Ortegon-en.pdf"
-                    : "/src/assets/docs/CV-Jorge-Ortegon-es.pdf"
+                    ? "/docs/CV-Jorge-Ortegon-en.pdf"
+                    : "/docs/CV-Jorge-Ortegon-es.pdf"
                 }
                 target="_blank"
                 rel="noopener noreferrer"
