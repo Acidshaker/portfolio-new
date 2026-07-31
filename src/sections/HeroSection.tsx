@@ -12,6 +12,8 @@ import {
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import CircleIcon from "@mui/icons-material/Circle";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import RocketLaunchOutlinedIcon from "@mui/icons-material/RocketLaunchOutlined";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { HEADER_HEIGHT } from "@/layouts/MainLayout";
@@ -218,6 +220,56 @@ export default function HeroSection() {
           </MotionTypography>
 
           <MotionBox
+            component="a"
+            href="https://kosti.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.36 }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1.5,
+              width: "fit-content",
+              maxWidth: 520,
+              px: 2,
+              py: 1.25,
+              color: "text.primary",
+              textDecoration: "none",
+              border: "1px solid",
+              borderColor: alpha(theme.palette.primary.main, 0.28),
+              borderRadius: 2,
+              bgcolor: alpha(theme.palette.primary.main, isDark ? 0.1 : 0.05),
+              transition:
+                "border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease",
+              "&:hover": {
+                borderColor: "primary.main",
+                bgcolor: alpha(theme.palette.primary.main, isDark ? 0.16 : 0.09),
+                transform: "translateY(-2px)",
+              },
+            }}
+          >
+            <RocketLaunchOutlinedIcon color="primary" />
+            <Box sx={{ minWidth: 0, flex: 1 }}>
+              <Typography
+                sx={{ fontWeight: 700, fontSize: "0.82rem", lineHeight: 1.3 }}
+              >
+                {t("kosti_achievement_title")}
+              </Typography>
+              <Typography
+                color="text.secondary"
+                sx={{ fontSize: "0.76rem", lineHeight: 1.45 }}
+              >
+                {t("kosti_achievement_description")}
+              </Typography>
+            </Box>
+            <OpenInNewIcon
+              sx={{ color: "text.secondary", fontSize: "1rem", flexShrink: 0 }}
+            />
+          </MotionBox>
+
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -281,7 +333,7 @@ export default function HeroSection() {
                     label={tech}
                     size="small"
                     component={motion.div}
-                    // @ts-ignore
+                    // @ts-expect-error MUI Chip and Framer Motion share transition props.
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.6 + i * 0.06 }}

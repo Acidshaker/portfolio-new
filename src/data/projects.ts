@@ -19,6 +19,32 @@ export interface Project {
 // ─── Datos de ejemplo — reemplaza con los tuyos ───────────────────────────────
 export const PROJECTS: Project[] = [
   {
+    id: "kosti",
+    titleEs: "Kosti App",
+    titleEn: "Kosti App",
+    descriptionEs:
+      "Mi primer SaaS: una plataforma propia para pequeños negocios que integra inventario, cálculo inteligente de precios, ventas, cotizaciones, abonos, clientes, compras, gastos y reportes. Como cofundador y CTO lideré y construí el producto completo end-to-end: estrategia y UX, frontend web y móvil, API y base de datos, IA, pagos, correo transaccional, infraestructura AWS, CI/CD y operación en producción.",
+    descriptionEn:
+      "My first SaaS: a proprietary platform for small businesses that brings together inventory, intelligent pricing, sales, quotes, installments, customers, purchases, expenses, and reporting. As co-founder and CTO, I led and built the complete product end-to-end: strategy and UX, web and mobile frontends, API and database, AI, payments, transactional email, AWS infrastructure, CI/CD, and production operations.",
+    stack: [
+      "React",
+      "TypeScript",
+      "React Native",
+      "Node.js",
+      "PostgreSQL",
+      "OpenAI",
+      "Stripe",
+      "Docker",
+      "AWS",
+      "GitHub Actions",
+    ],
+    category: "fullstack",
+    featured: true,
+    isPrivate: true,
+    image: "/projects/kosti.png",
+    demoUrl: "https://kosti.app",
+  },
+  {
     id: "obraexacta",
     titleEs: "Obra Exacta - ERP",
     titleEn: "Obra Exacta - ERP",
@@ -32,7 +58,6 @@ export const PROJECTS: Project[] = [
     //   "Enterprise resource planning system for inventory management, billing and HR. Modular architecture with microservices and real-time analytics dashboard.",
     stack: ["React", "TypeScript", "Node.js", "PostgreSQL", "Docker", "AWS"],
     category: "fullstack",
-    featured: true,
     isPrivate: true,
     image: "/projects/obraexacta.png",
   },
@@ -50,13 +75,13 @@ export const PROJECTS: Project[] = [
     image: "/projects/whiteplank.png",
   },
   {
-    id: "spin-dj",
-    titleEs: "Spin Dj - SAAS",
-    titleEn: "Spin Dj - SAAS",
+    id: "ovatio-vibe",
+    titleEs: "Ovatio Vibe - SaaS",
+    titleEn: "Ovatio Vibe - SaaS",
     descriptionEs:
-      "Sistema de suscripción a través de stripe para artistas que desean ofrecer servicios de DJ. Permite a los artistas recibir peticiones musicales desde Spotify en tiempo real con la implementación de websockets, gestionar sus horarios y generar reportes de ingresos.",
+      "Plataforma para DJs y recintos que permite recibir solicitudes musicales de Spotify en tiempo real mediante WebSockets, administrar eventos y horarios, procesar pagos y propinas con Stripe y consultar reportes de ingresos.",
     descriptionEn:
-      "A subscription system powered by Stripe for artists who want to offer DJ services. It allows artists to receive real-time music requests from Spotify through the implementation of websockets, manage their schedules, and generate revenue reports",
+      "A platform for DJs and venues to receive Spotify song requests in real time through WebSockets, manage events and schedules, process payments and tips with Stripe, and review revenue reports.",
     stack: [
       "React",
       "TypeScript",
@@ -68,7 +93,8 @@ export const PROJECTS: Project[] = [
       "AWS",
     ],
     category: "fullstack",
-    image: "/projects/spindj.png",
+    image: "/projects/ovatiovibe.png",
+    demoUrl: "https://admin.ovatiovibe.com",
     isPrivate: true,
   },
   {
