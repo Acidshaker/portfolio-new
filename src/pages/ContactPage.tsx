@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import emailjs from "@emailjs/browser";
 import {
   Box,
   Container,
@@ -15,6 +14,7 @@ import {
   Divider,
   IconButton,
   Tooltip,
+  MenuItem,
 } from "@mui/material";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
@@ -23,20 +23,13 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import SendIcon from "@mui/icons-material/Send";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
-// ─── Configura tus credenciales de EmailJS ────────────────────────────────────
-// 1. Crea cuenta en https://www.emailjs.com (plan gratuito: 200 emails/mes)
-// 2. En Email Services → conecta tu Gmail/Outlook
-// 3. En Email Templates → crea una plantilla con variables: {{from_name}}, {{from_email}}, {{subject}}, {{message}}
-// 4. Reemplaza los valores de abajo con los tuyos
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE;
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE;
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
 // ─── Tus datos de contacto ────────────────────────────────────────────────────
 const CONTACT_EMAIL = "jorge_barcelino@hotmail.com";
+const WHATSAPP_NUMBER = "529901014444";
 const GITHUB_URL = "https://github.com/Acidshaker";
 const LINKEDIN_URL =
   "https://linkedin.com/in/jorge-alberto-ortegón-bacelis-67bb0b254";
@@ -44,8 +37,10 @@ const LINKEDIN_URL =
 interface FormValues {
   from_name: string;
   from_email: string;
+  project_type: string;
   subject: string;
   message: string;
+  website: string;
 }
 
 type SubmitStatus = "idle" | "loading" | "success" | "error";
@@ -102,6 +97,9 @@ export default function ContactPage() {
   const theme = useTheme();
   const isDark = theme.palette.mode === "dark";
   const [status, setStatus] = useState<SubmitStatus>("idle");
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    t("whatsapp_message"),
+  )}`;
 
   const {
     register,
@@ -113,17 +111,14 @@ export default function ContactPage() {
   const onSubmit = async (data: FormValues) => {
     setStatus("loading");
     try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          from_name: data.from_name,
-          from_email: data.from_email,
-          subject: data.subject,
-          message: data.message,
-        },
-        EMAILJS_PUBLIC_KEY,
-      );
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) throw new Error("Contact request failed");
+
       setStatus("success");
       reset();
     } catch {
@@ -202,6 +197,45 @@ export default function ContactPage() {
                   <Typography variant="h5" sx={{ fontWeight: 700 }}>
                     {t("info_title")}
                   </Typography>
+
+                  <Box
+                    sx={{
+                      p: 2.5,
+                      borderRadius: 3,
+                      border: "1px solid",
+                      borderColor: alpha("#25D366", isDark ? 0.5 : 0.35),
+                      bgcolor: alpha("#25D366", isDark ? 0.08 : 0.06),
+                    }}
+                  >
+                    <Stack spacing={1.5}>
+                      <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+                        {t("whatsapp_title")}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {t("whatsapp_description")}
+                      </Typography>
+                      <Button
+                        component="a"
+                        href={whatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        variant="contained"
+                        startIcon={<WhatsAppIcon />}
+                        sx={{
+                          mt: 0.5,
+                          color: "#fff",
+                          bgcolor: "#25D366",
+                          boxShadow: "none",
+                          "&:hover": {
+                            bgcolor: "#1ebe5d",
+                            boxShadow: "none",
+                          },
+                        }}
+                      >
+                        {t("whatsapp_button")}
+                      </Button>
+                    </Stack>
+                  </Box>
 
                   <Stack spacing={2.5}>
                     <InfoItem
@@ -340,6 +374,54 @@ export default function ContactPage() {
                     spacing={2.5}
                     noValidate
                   >
+                    <Box
+                      aria-hidden="true"
+                      sx={{
+                        position: "absolute",
+                        width: 1,
+                        height: 1,
+                        overflow: "hidden",
+                        clip: "rect(0 0 0 0)",
+                      }}
+                    >
+                      <label htmlFor="website">Website</label>
+                      <input
+                        id="website"
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        {...register("website")}
+                      />
+                    </Box>
+
+                    <TextField
+                      select
+                      fullWidth
+                      defaultValue=""
+                      label={t("field_project_type")}
+                      error={!!errors.project_type}
+                      helperText={errors.project_type?.message}
+                      sx={inputSx}
+                      {...register("project_type", {
+                        required: t("field_project_type_required"),
+                      })}
+                    >
+                      <MenuItem value="web">{t("project_type_web")}</MenuItem>
+                      <MenuItem value="ecommerce">
+                        {t("project_type_ecommerce")}
+                      </MenuItem>
+                      <MenuItem value="mobile">
+                        {t("project_type_mobile")}
+                      </MenuItem>
+                      <MenuItem value="desktop">
+                        {t("project_type_desktop")}
+                      </MenuItem>
+                      <MenuItem value="automation">
+                        {t("project_type_automation")}
+                      </MenuItem>
+                      <MenuItem value="other">{t("project_type_other")}</MenuItem>
+                    </TextField>
+
                     {/* Nombre + Email en fila */}
                     <Box
                       sx={{
